@@ -1,0 +1,7 @@
+ul li {
+  display: inline-grid;
+}
+.card {
+  background-color: lightblue;
+  opacity: 90%;
+}

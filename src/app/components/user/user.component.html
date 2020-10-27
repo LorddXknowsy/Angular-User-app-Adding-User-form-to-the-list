@@ -1,0 +1,62 @@
+<button (click)="showUserForm = !showUserForm" class="btn btn-dark mb-3">
+  add User
+</button>
+<div class="card card-body" *ngIf="showUserForm">
+  <h2>Add User</h2>
+  <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+    <div class="form-group">
+      <label>Name</label>
+      <input
+        type="text"
+        [(ngModel)]="user.name"
+        [ngClass]="{ 'is-invalid': userName.errors && userName.touched }"
+        class="form-control"
+        name="name"
+        #userName="ngModel"
+        required
+        minlength="3"
+      />
+      <div [hidden]="!userName.errors?.required" class="invalid-feedback">
+        You should type name here
+      </div>
+      <div [hidden]="!userName.errors?.minlength" class="invalid-feedback">
+        Must be at least 3 characters
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Age</label>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="user.age"
+        name="age"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Gender</label>
+      <select
+        class="custom-select my-1 mr-sm-2"
+        name="gender"
+        [(ngModel)]="user.gender"
+      >
+        <option selected>Choose...</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Location</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="user.location"
+        name="location"
+      />
+    </div>
+    <button [disabled]="!userForm.form.valid" class="btn btn-block mb-3">
+      Add New User
+    </button>
+  </form>
+</div>
